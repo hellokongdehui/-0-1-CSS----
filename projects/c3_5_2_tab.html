@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.5.2 负margin技术 tab选项卡</title>
+    <style type="text/css">
+        * {padding: 0; margin: 0;}
+        .tab
+        {
+            width: 500px;
+            height: 300px;
+            border: 1px solid purple;
+            margin: 10px auto;
+            overflow: hidden;
+        }
+        ul {list-style-type: none; overflow: hidden;}
+        ul li
+        {
+            float: left;
+            width: 25%;
+            line-height: 35px;
+            text-align: center;
+            box-sizing: border-box;
+            border-right: 1px solid red;
+            border-bottom: 1px solid red;
+            margin-top: -1px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        li：last-child {border-right:none}
+        .active
+        {
+            background: hotpink;
+            border-bottom: none;
+        }
+        .tab div
+        {
+            width: 100px;
+            height: 300px;
+            display: none;
+        }
+    </style>
+    <script>
+        window.onload = function ()
+        {
+            var aDiv = document.querySelectorAll(".tab div");
+            var aTab = document.querySelectorAll(".tab ul li");
+
+            for (var i=0; i<aTab.length; i++)
+            {
+                aTab[i].index = i;
+                aTab[i].onmouseover = function ()
+                {
+                    for (var j=0; j<aTab.length; j++)
+                    {
+                        aDiv[j].style.display = "none";
+                        aTab[j].className = "";
+                    };
+
+                    aDiv[this.index].style.display = "block";
+                    this.className = "active";
+                };
+            };
+        }
+    </script>
+</head>
+<body>
+    <div class="tab">
+        <ul>
+            <li class="active">娱乐</li>
+            <li>经济</li>
+            <li>科技</li>
+            <li>时事</li>
+        </ul>
+        <div style="display: block;">“娱乐”部分内容...</div>
+        <div>“经济”部分内容...</div>
+        <div>“科技”部分内容...</div>
+        <div>“时事”部分内容...</div>
+    </div>
+</body>
+</html>
